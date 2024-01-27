@@ -21,6 +21,10 @@ public interface IVersionRepository
 
 	public Task<Boolean> CreateDependenciesAsync(IEnumerable<DependencyDatabase> dependenciesDatabase);
 
+	public Task<Boolean> CreateVersionDependencyAsync(Guid versionId, Guid dependencyDatabaseId);
+
+	public Task<Boolean> CreateVersionDependenciesAsync(Guid versionId, IEnumerable<Guid> dependenciesDatabaseIds);
+
 	public Task<Boolean> DeleteDependencyAsync(Guid id);
 
 	public Task<Boolean> DeleteDependenciesAsync(Guid[] ids);
@@ -33,23 +37,23 @@ public interface IVersionRepository
 
 	#region version
 
-	public Task<IEnumerable<VersionDatabase>> GetVersionsAsync(Boolean withNotAvailable = false);
+	public Task<IEnumerable<VersionDatabase>> GetVersionsAsync(Boolean archived = false);
 
-	public Task<IEnumerable<VersionDatabase>> GetVersionsAsync(Guid[] ids, Boolean withNotAvailable = false);
+	public Task<IEnumerable<VersionDatabase>> GetVersionsAsync(Guid[] ids, Boolean archived = false);
 
 	public Task<IEnumerable<VersionDatabase>> GetVersionsAsync(Int32 type);
 
-	public Task<VersionDatabase> GetVersionAsync(Guid id);
+	public Task<VersionDatabase?> GetVersionAsync(Guid id);
 
-	public Task<VersionDatabase> GetVersionAsync(String build);
+	public Task<VersionDatabase?> GetVersionAsync(String build);
 
 	public Task<Boolean> CreateVersionAsync(VersionDatabase versionDatabase);
 
-	public Task<Boolean> CreateVersionAsync(VersionDatabase versionDatabase, IEnumerable<DependencyDatabase> dependenciesDatabase);
+	public Task<Boolean> CreateVersionAsync(VersionDatabase versionDatabase, IEnumerable<Guid> dependenciesDatabaseIds);
 
 	public Task<Boolean> UpdateVersionAsync(Guid id, VersionDatabase versionDatabase);
 
-	public Task<Boolean> UpdateVersionAsync(Guid id, VersionDatabase versionDatabase, IEnumerable<DependencyDatabase> dependenciesDatabase);
+	public Task<Boolean> UpdateVersionAsync(Guid id, VersionDatabase versionDatabase, IEnumerable<Guid> dependenciesDatabaseIds);
 
 	public Task<Boolean> DeleteVersionAsync(Guid id);
 

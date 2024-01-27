@@ -13,4 +13,6 @@ public class VersionDatabase
 	public Int32 Type { get; set; }
 
 	public String Path { get; set; } = null!;
+
+	public Boolean Available { get; set; }
 }
