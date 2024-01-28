@@ -1,6 +1,6 @@
 ﻿namespace UM.Tools.Enums;
 
-public enum FileType
+public enum UpdateType
 {
 	Operate, // оперативное
 	Accumulate // аккумулятивное

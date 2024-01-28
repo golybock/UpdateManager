@@ -1,3 +1,7 @@
+using Npgsql.Extension.Options;
+using UM.Repositories.Repositories;
+using UM.Services.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -13,6 +17,12 @@ builder.Services.AddCors(cors =>
             .AllowAnyOrigin();
     });
 });
+
+var conf = builder.Configuration;
+
+// todo cringe
+builder.Services.AddSingleton<IVersionRepository>(c => new VersionRepository(new DatabaseOptions(){ConnectionString = conf.GetConnectionString("um_files")}));
+builder.Services.AddScoped<IVersionService, VersionService>();
 
 var app = builder.Build();
 

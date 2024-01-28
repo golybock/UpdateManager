@@ -6,4 +6,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\UM.Models.Files.Blank\UM.Models.Files.Blank.csproj" />
+      <ProjectReference Include="..\UM.Models.Files.Database\UM.Models.Files.Database.csproj" />
+      <ProjectReference Include="..\UM.Models.Files.Domain\UM.Models.Files.Domain.csproj" />
+      <ProjectReference Include="..\UM.Models.Files.View\UM.Models.Files.View.csproj" />
+      <ProjectReference Include="..\UM.Repositories\UM.Repositories.csproj" />
+    </ItemGroup>
+
 </Project>

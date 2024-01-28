@@ -13,7 +13,7 @@ public class VersionView
 
 	public String Notes { get; private set; }
 
-	public FileType Type { get; private set; }
+	public UpdateType Type { get; private set; }
 
 	public IEnumerable<DependencyView> Dependencies { get; private set; }
 
@@ -37,7 +37,7 @@ public class VersionView
 		Dependencies = Enumerable.Empty<DependencyView>();
 	}
 
-	public VersionView(Guid id, string build, DateTime timestamp, string notes, FileType type, string path, IEnumerable<DependencyView> dependencies)
+	public VersionView(Guid id, string build, DateTime timestamp, string notes, UpdateType type, string path, IEnumerable<DependencyView> dependencies)
 	{
 		Id = id;
 		Build = build;

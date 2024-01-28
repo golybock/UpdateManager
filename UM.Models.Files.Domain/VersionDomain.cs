@@ -12,7 +12,7 @@ public class VersionDomain
 
 	public String Notes { get; private set; }
 
-	public FileType Type { get; private set; }
+	public UpdateType Type { get; private set; }
 
 	public String Path { get; private set; }
 
@@ -24,7 +24,7 @@ public class VersionDomain
 		Build = versionDatabase.Build;
 		Timestamp = versionDatabase.Timestamp;
 		Notes = versionDatabase.Notes;
-		Type = (FileType) versionDatabase.Type;
+		Type = (UpdateType) versionDatabase.Type;
 		Path = versionDatabase.Path;
 		Dependencies = dependencies;
 	}
@@ -35,7 +35,7 @@ public class VersionDomain
 		Build = versionDatabase.Build;
 		Timestamp = versionDatabase.Timestamp;
 		Notes = versionDatabase.Notes;
-		Type = (FileType) versionDatabase.Type;
+		Type = (UpdateType) versionDatabase.Type;
 		Path = versionDatabase.Path;
 		Dependencies = Enumerable.Empty<DependencyDomain>();
 	}
@@ -46,7 +46,7 @@ public class VersionDomain
 		Build = build;
 		Timestamp = timestamp;
 		Notes = notes;
-		Type = (FileType) type;
+		Type = (UpdateType) type;
 		Path = path;
 		Dependencies = dependencies;
 	}

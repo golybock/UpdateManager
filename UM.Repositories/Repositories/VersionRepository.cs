@@ -170,7 +170,7 @@ public class VersionRepository : NpgsqlRepository, IVersionRepository
 			new NpgsqlParameter() {Value = !archived}
 		};
 
-		return await GetListAsync<VersionDatabase>(query);
+		return await GetListAsync<VersionDatabase>(query, parameters);
 	}
 
 	public async Task<IEnumerable<VersionDatabase>> GetVersionsAsync(Guid[] ids, bool archived = false)
@@ -183,7 +183,7 @@ public class VersionRepository : NpgsqlRepository, IVersionRepository
 			new NpgsqlParameter() {Value = !archived},
 		};
 
-		return await GetListAsync<VersionDatabase>(query);
+		return await GetListAsync<VersionDatabase>(query, parameters);
 	}
 
 	public async Task<IEnumerable<VersionDatabase>> GetVersionsAsync(int type)
@@ -195,7 +195,7 @@ public class VersionRepository : NpgsqlRepository, IVersionRepository
 			new NpgsqlParameter() {Value = type}
 		};
 
-		return await GetListAsync<VersionDatabase>(query);
+		return await GetListAsync<VersionDatabase>(query, parameters);
 	}
 
 	public async Task<VersionDatabase?> GetVersionAsync(Guid id)
@@ -207,7 +207,7 @@ public class VersionRepository : NpgsqlRepository, IVersionRepository
 			new NpgsqlParameter() {Value = id}
 		};
 
-		return await GetAsync<VersionDatabase>(query);
+		return await GetAsync<VersionDatabase>(query, parameters);
 	}
 
 	public async Task<VersionDatabase?> GetVersionAsync(string build)
@@ -219,7 +219,7 @@ public class VersionRepository : NpgsqlRepository, IVersionRepository
 			new NpgsqlParameter() {Value = build}
 		};
 
-		return await GetAsync<VersionDatabase>(query);
+		return await GetAsync<VersionDatabase>(query, parameters);
 	}
 
 	public async Task<Boolean> CreateVersionAsync(VersionDatabase versionDatabase)
