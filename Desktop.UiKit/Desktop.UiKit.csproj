@@ -12,4 +12,9 @@
       <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Resources\array_forward.png" />
+      <Resource Include="Resources\array_forward.png" />
+    </ItemGroup>
+
 </Project>

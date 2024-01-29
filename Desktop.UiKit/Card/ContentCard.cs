@@ -52,7 +52,7 @@ public class ContentCard : Border
 			nameof(ChangeColorOnMouseEnter),
 			typeof(bool),
 			typeof(ContentCard),
-			new UIPropertyMetadata(null));
+			new PropertyMetadata(null));
 
 	public bool ChangeColorOnMouseEnter
 	{

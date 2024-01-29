@@ -25,4 +25,9 @@
       <ProjectReference Include="..\Desktop.UiKit\Desktop.UiKit.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Icons\settings_icon.png" />
+      <Resource Include="Icons\settings_icon.png" />
+    </ItemGroup>
+
 </Project>
