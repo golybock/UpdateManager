@@ -28,6 +28,10 @@
     <ItemGroup>
       <None Remove="Icons\settings_icon.png" />
       <Resource Include="Icons\settings_icon.png" />
+      <None Remove="Icons\zip_icon.png" />
+      <Resource Include="Icons\zip_icon.png" />
+      <None Remove="Icons\server_icon.png" />
+      <Resource Include="Icons\server_icon.png" />
     </ItemGroup>
 
 </Project>

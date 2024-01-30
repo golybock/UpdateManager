@@ -11,7 +11,7 @@ public class SettingsCard : ContentCard
 
 	public SettingsCard()
 	{
-		Height = 55;
+		Height = 60;
 		MinWidth = 355;
 
 		_contentGrid = new Grid();
@@ -106,7 +106,7 @@ public class SettingsCard : ContentCard
 			_arrayIcon.Visibility = Visibility.Visible;
 		}
 
-		if (show == true)
+		if (show == false)
 		{
 			_arrayIcon.Visibility = Visibility.Collapsed;
 		}
@@ -165,7 +165,8 @@ public class SettingsCard : ContentCard
 		_arrayIcon = new Image
 		{
 			Margin = new Thickness(20, 3, 3, 3),
-			Source = new BitmapImage(new Uri("/Desktop.UiKit;component/Resources/array_forward.png", UriKind.Relative))
+			Source = new BitmapImage(new Uri("/Desktop.UiKit;component/Resources/array_forward.png", UriKind.Relative)),
+			Visibility = Visibility.Collapsed
 		};
 
 		Grid.SetRow(_arrayIcon, 0);
@@ -200,7 +201,7 @@ public class SettingsCard : ContentCard
 			Text = text,
 			Margin = new Thickness(10, 0, 0, 0),
 			VerticalAlignment = VerticalAlignment.Top,
-			FontSize = 14
+			FontSize = 10
 		};
 
 		Grid.SetRow(description, 1);

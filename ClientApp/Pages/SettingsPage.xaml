@@ -4,9 +4,62 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ClientApp.Pages"
+      xmlns:card="clr-namespace:Desktop.UiKit.Card;assembly=Desktop.UiKit"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d"
       Title="Настройки">
     <Grid>
-        
+        <StackPanel Orientation="Vertical">
+
+            <card:SettingsCard Header="Использование архиватора"
+                               Description="Файлы обновлений будут сохраняться после установки"
+                               IconPath="/ClientApp;component/Icons/zip_icon.png"
+                               ShowArray="False"
+                               Margin="5">
+
+                <CheckBox Name="SaveArchiveCheckBox"
+                          Content="Использовать"
+                          Checked="SaveArchiveCheckBox_OnChecked"
+                          Unchecked="SaveArchiveCheckBox_OnUnchecked"/>
+
+            </card:SettingsCard>
+
+            <card:SettingsCard Header="Сервера обновлений"
+                               Description="Сервера для скачивания обновлений"
+                               IconPath="/ClientApp;component/Icons/server_icon.png"
+                               ShowArray="False"
+                               Margin="5">
+
+                <TextBox Name="ServersTextBox"
+                         Width="150"
+                         Height="25"/>
+
+            </card:SettingsCard>
+
+            <card:SettingsCard Header="Автопроверка обновлений"
+                               Description="Автоматически проверять обновления"
+                               IconPath="/ClientApp;component/Icons/server_icon.png"
+                               ShowArray="False"
+                               Margin="5">
+
+                <CheckBox Name="AutoCheckUpdatesCheckBox"
+                          Content="Использовать"
+                          Checked="SaveArchiveCheckBox_OnChecked"
+                          Unchecked="SaveArchiveCheckBox_OnUnchecked"/>
+
+            </card:SettingsCard>
+
+            <card:SettingsCard Header="Проверка обновлений каждые"
+                               Description="Период проверки обновлений"
+                               IconPath="/ClientApp;component/Icons/server_icon.png"
+                               ShowArray="False"
+                               Margin="5">
+
+                <ComboBox Name="PeriodComboBox"
+                          SelectionChanged="PeriodComboBox_OnSelectionChanged"/>
+
+            </card:SettingsCard>
+
+        </StackPanel>
     </Grid>
 </Page>
