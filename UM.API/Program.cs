@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using Npgsql.Extension.Options;
 using UM.Repositories.Repositories;
 using UM.Services.Services;
@@ -27,6 +28,11 @@ builder.Services.AddSingleton<IVersionRepository>(_ => new VersionRepository(opt
 builder.Services.AddScoped<IVersionService, VersionService>();
 
 var app = builder.Build();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
 
 // пока нужен
 app.UseSwagger();
