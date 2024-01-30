@@ -6,7 +6,7 @@ namespace UM.Services.Services;
 
 public class VersionService : IVersionService
 {
-	private IVersionRepository _versionRepository;
+	private readonly IVersionRepository _versionRepository;
 
 	public VersionService(IVersionRepository versionRepository)
 	{
@@ -65,5 +65,16 @@ public class VersionService : IVersionService
 		var lastVersionView = new VersionView(lastVersionDomain);
 
 		return lastVersionView;
+	}
+
+	public async Task<IEnumerable<VersionView>> GetUpdates()
+	{
+		var versions = await _versionRepository.GetVersionsAsync();
+
+		var versionDomains = versions.Select(version => new VersionDomain(version));
+
+		var versionViews = versionDomains.Select(version => new VersionView(version));
+
+		return versionViews;
 	}
 }

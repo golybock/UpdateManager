@@ -15,6 +15,13 @@ namespace UM.API.Controllers
         }
 
         [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllVersions()
+        {
+            return Ok(await _versionService.GetUpdates());
+        }
+
+
+        [HttpGet("[action]")]
         public async Task<IActionResult> GetUpdate(string build)
         {
             try

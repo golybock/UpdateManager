@@ -6,10 +6,16 @@
       xmlns:local="clr-namespace:ClientApp.Pages"
       xmlns:card="clr-namespace:Desktop.UiKit.Card;assembly=Desktop.UiKit"
       xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+      xmlns:controls="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d"
       Title="Настройки">
     <Grid>
         <StackPanel Orientation="Vertical">
+
+            <TextBlock Text="Обновления"
+                       Margin="12"
+                       FontSize="20"
+                       FontWeight="Medium"/>
 
             <card:SettingsCard Header="Использование архиватора"
                                Description="Файлы обновлений будут сохраняться после установки"
@@ -25,40 +31,66 @@
             </card:SettingsCard>
 
             <card:SettingsCard Header="Сервера обновлений"
-                               Description="Сервера для скачивания обновлений"
+                               Description="Сервера для скачивания обновлени(через ;)"
                                IconPath="/ClientApp;component/Icons/server_icon.png"
                                ShowArray="False"
                                Margin="5">
 
                 <TextBox Name="ServersTextBox"
-                         Width="150"
-                         Height="25"/>
+                         Width="175"
+                         KeyDown="ServersTextBox_OnKeyDown"/>
 
             </card:SettingsCard>
 
             <card:SettingsCard Header="Автопроверка обновлений"
                                Description="Автоматически проверять обновления"
-                               IconPath="/ClientApp;component/Icons/server_icon.png"
-                               ShowArray="False"
-                               Margin="5">
-
-                <CheckBox Name="AutoCheckUpdatesCheckBox"
-                          Content="Использовать"
-                          Checked="SaveArchiveCheckBox_OnChecked"
-                          Unchecked="SaveArchiveCheckBox_OnUnchecked"/>
-
-            </card:SettingsCard>
-
-            <card:SettingsCard Header="Проверка обновлений каждые"
-                               Description="Период проверки обновлений"
-                               IconPath="/ClientApp;component/Icons/server_icon.png"
+                               IconPath="/ClientApp;component/Icons/auto_update_icon.png"
                                ShowArray="False"
                                Margin="5">
 
                 <ComboBox Name="PeriodComboBox"
+                          DisplayMemberPath="Name"
                           SelectionChanged="PeriodComboBox_OnSelectionChanged"/>
 
             </card:SettingsCard>
+
+            <card:SettingsCard Name="VersionCard"
+                               Header="Ваша версия: "
+                               Description="Последняя версия: "
+                               IconPath="/ClientApp;component/Icons/info_icon.png"
+                               ShowArray="False"
+                               Margin="5">
+
+                <Button Name="UpdateButton"
+                        Visibility="Collapsed"
+                        Width="125"
+                        Content="Обновить"
+                        Click="UpdateButton_OnClick"/>
+
+            </card:SettingsCard>
+
+            <TextBlock Text="История обновлений"
+                       Margin="12"
+                       FontSize="20"
+                       FontWeight="Medium"/>
+
+            <card:ContentCard Margin="5">
+
+                <controls:ItemsRepeater Name="VersionsItemsRepeater">
+
+                    <controls:ItemsRepeater.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Build, StringFormat=Версия: {0}}"></TextBlock>
+                                <TextBlock Text="{Binding Timestamp, StringFormat=Дата выхода: MM/dd/yyyy H:mm}"></TextBlock>
+                                <TextBlock Text="{Binding Notes}"></TextBlock>
+                                <TextBlock Text=""></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </controls:ItemsRepeater.ItemTemplate>
+                </controls:ItemsRepeater>
+
+            </card:ContentCard>
 
         </StackPanel>
     </Grid>

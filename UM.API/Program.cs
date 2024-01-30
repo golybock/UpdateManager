@@ -20,17 +20,17 @@ builder.Services.AddCors(cors =>
 
 var conf = builder.Configuration;
 
-// todo cringe
-builder.Services.AddSingleton<IVersionRepository>(c => new VersionRepository(new DatabaseOptions(){ConnectionString = conf.GetConnectionString("um_files")}));
+
+var options = new DatabaseOptions() {ConnectionString = conf.GetConnectionString("um_files")};
+
+builder.Services.AddSingleton<IVersionRepository>(_ => new VersionRepository(options));
 builder.Services.AddScoped<IVersionService, VersionService>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// пока нужен
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors();
 

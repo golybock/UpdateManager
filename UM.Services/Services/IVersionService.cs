@@ -9,4 +9,6 @@ public interface IVersionService
 	public Task<byte[]> GetUpdate(Guid id);
 
 	public Task<VersionView?> GetLastUpdate();
+
+	public Task<IEnumerable<VersionView>> GetUpdates();
 }

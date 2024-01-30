@@ -1,4 +1,4 @@
-﻿namespace ClientApp.Models;
+﻿namespace Desktop.Core.Models;
 
 public class Settings
 {
@@ -6,13 +6,11 @@ public class Settings
 
 	public List<string> Servers { get; set; } = new List<string>();
 
-	public bool AutoCheckUpdates { get; set; }
-
 	public UpdatesPeriod UpdatesPeriod { get; set; } = null!;
 
 	public string CurrentVersion { get; set; } = null!;
 
 	public string? VersionToInstall { get; set; }
 
-	public DateTime LastCheckUpdate { get; set; }
+	public DateTime? LastCheckUpdate { get; set; }
 }

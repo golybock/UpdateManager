@@ -1,9 +1,7 @@
-﻿using System.Configuration;
-using System.Data;
-using System.IO;
+﻿using System.IO;
 using System.Text.Json;
 using System.Windows;
-using ClientApp.Models;
+using Desktop.Core.Models;
 
 namespace ClientApp;
 
@@ -28,10 +26,9 @@ public partial class App : Application
 			{
 				Settings settings = new Settings()
 				{
-					Servers = ["https://localhost:7071/"],
+					Servers = ["https://localhost:7071/;"],
 					CurrentVersion = "1.0.0",
-					AutoCheckUpdates = true,
-					UpdatesPeriod = new UpdatesPeriod(){Id = 0, Name = "at start"},
+					UpdatesPeriod = UpdatesPeriod.Periods.ElementAt(1),
 					SaveArchive = true
 				};
 
