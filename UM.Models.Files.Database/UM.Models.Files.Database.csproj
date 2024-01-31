@@ -7,4 +7,8 @@
         <RootNamespace>UM.Models.Files</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\UM.Models.Files.Blank\UM.Models.Files.Blank.csproj" />
+    </ItemGroup>
+
 </Project>

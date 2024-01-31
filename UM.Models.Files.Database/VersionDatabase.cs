@@ -1,4 +1,6 @@
-﻿namespace UM.Models.Files;
+﻿using UM.Models.Files.Blank;
+
+namespace UM.Models.Files;
 
 public class VersionDatabase
 {
@@ -15,4 +17,17 @@ public class VersionDatabase
 	public String Path { get; set; } = null!;
 
 	public Boolean Available { get; set; }
+
+	public VersionDatabase() { }
+
+	public VersionDatabase(VersionBlank versionBlank)
+	{
+		Id = Guid.NewGuid();
+		Build = versionBlank.Build;
+		Timestamp = DateTime.UtcNow;
+		Notes = versionBlank.Notes;
+		Type = (int) versionBlank.Type;
+		Path = versionBlank.Build + ".zip";
+		Available = versionBlank.Available;
+	}
 }

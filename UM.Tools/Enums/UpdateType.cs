@@ -2,6 +2,6 @@
 
 public enum UpdateType
 {
-	Operate, // оперативное
-	Accumulate // аккумулятивное
+	Operate = 1, // оперативное
+	Accumulate = 2 // аккумулятивное
 }

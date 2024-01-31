@@ -1,4 +1,6 @@
-﻿using UM.Models.Files.Domain;
+﻿using UM.Models.Files;
+using UM.Models.Files.Blank;
+using UM.Models.Files.Domain;
 using UM.Models.Files.View;
 using UM.Repositories.Repositories;
 
@@ -76,5 +78,14 @@ public class VersionService : IVersionService
 		var versionViews = versionDomains.Select(version => new VersionView(version));
 
 		return versionViews;
+	}
+
+	public async Task<bool> CreateVersion(VersionBlank versionBlank)
+	{
+		var versionDatabase = new VersionDatabase(versionBlank);
+
+		var result = await _versionRepository.CreateVersionAsync(versionDatabase);
+
+		return result;
 	}
 }

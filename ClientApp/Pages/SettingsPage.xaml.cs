@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Desktop.Core.Api;
@@ -141,8 +142,17 @@ public partial class SettingsPage : Page
 		return result;
 	}
 
-	private void UpdateButton_OnClick(object sender, RoutedEventArgs e)
+	private async void UpdateButton_OnClick(object sender, RoutedEventArgs e)
 	{
-		// throw new NotImplementedException();
+		var api = new ApiVersions(_settings);
+
+		var versions = await api.GetAllVersions();
+
+		var lastVersion = versions.MaxBy(c => c.Timestamp);
+
+		_settings.VersionToInstall = lastVersion!.Build;
+		App.SaveSettings(_settings);
+
+		Process.Start("Installer.exe");
 	}
 }

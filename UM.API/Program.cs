@@ -11,30 +11,37 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(cors =>
 {
-    cors.AddDefaultPolicy(options =>
-    {
-        options.AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowAnyOrigin();
-    });
+	cors.AddDefaultPolicy(options =>
+	{
+		options.AllowAnyMethod()
+			.AllowAnyHeader()
+			.AllowAnyOrigin();
+	});
 });
 
+// set conf
 var conf = builder.Configuration;
+var options = new DatabaseOptions() {ConnectionString = conf.GetConnectionString("um_files")!};
 
-
-var options = new DatabaseOptions() {ConnectionString = conf.GetConnectionString("um_files")};
-
+// di
 builder.Services.AddSingleton<IVersionRepository>(_ => new VersionRepository(options));
 builder.Services.AddScoped<IVersionService, VersionService>();
 
 var app = builder.Build();
 
-app.UseForwardedHeaders(new ForwardedHeadersOptions
+if (app.Environment.IsProduction())
 {
-    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+	app.UseForwardedHeaders(new ForwardedHeadersOptions
+	{
+		ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+	});
+}
+
+app.Map("/", async (context) =>
+{
+	await context.Response.WriteAsync("available");
 });
 
-// пока нужен
 app.UseSwagger();
 app.UseSwaggerUI();
 
