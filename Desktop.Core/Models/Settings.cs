@@ -8,9 +8,5 @@ public class Settings
 
 	public UpdatesPeriod UpdatesPeriod { get; set; } = null!;
 
-	public string CurrentVersion { get; set; } = null!;
-
-	public string? VersionToInstall { get; set; }
-
 	public DateTime? LastCheckUpdate { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -33,9 +34,12 @@ public partial class SettingsPage : Page
 	{
 		try
 		{
-			VersionCard.Header += _settings.CurrentVersion;
+			Assembly assembly = Assembly.GetExecutingAssembly();
+			FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
 
-			var api = new ApiVersions(_settings);
+			VersionCard.Header += fvi.FileVersion;
+
+			var api = new ApiVersions(_settings.Servers);
 
 			var versions = await api.GetAllVersions();
 
@@ -45,7 +49,7 @@ public partial class SettingsPage : Page
 
 			VersionCard.Description += lastVersion?.Build;
 
-			if (VersionToInt(lastVersion?.Build!) > VersionToInt(_settings.CurrentVersion))
+			if (VersionToInt(lastVersion?.Build!) > VersionToInt(fvi.FileVersion!))
 			{
 				UpdateButton.Visibility = Visibility.Visible;
 			}
@@ -109,11 +113,6 @@ public partial class SettingsPage : Page
 		{
 			var servers = ServersTextBox.Text;
 
-			if (!servers.EndsWith(";"))
-			{
-				servers += ";";
-			}
-
 			var urls = ParseUrls(servers);
 
 			_settings.Servers = urls;
@@ -144,15 +143,19 @@ public partial class SettingsPage : Page
 
 	private async void UpdateButton_OnClick(object sender, RoutedEventArgs e)
 	{
-		var api = new ApiVersions(_settings);
+		try
+		{
+			var api = new ApiVersions(_settings.Servers);
 
-		var versions = await api.GetAllVersions();
+			var versions = await api.GetAllVersions();
 
-		var lastVersion = versions.MaxBy(c => c.Timestamp);
+			var lastVersion = versions.MaxBy(c => c.Timestamp);
 
-		_settings.VersionToInstall = lastVersion!.Build;
-		App.SaveSettings(_settings);
-
-		Process.Start("Installer.exe");
+			Process.Start("Installer.exe", lastVersion!.Id.ToString());
+		}
+		catch (Exception exception)
+		{
+			MessageBox.Show("Не удалось найти установочные файлы");
+		}
 	}
 }

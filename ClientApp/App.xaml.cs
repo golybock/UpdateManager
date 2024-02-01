@@ -10,6 +10,8 @@ namespace ClientApp;
 /// </summary>
 public partial class App : Application
 {
+	public static string CurrentVersion => Environment.Version.ToString();
+
 	public static Settings Settings
 	{
 		get
@@ -26,8 +28,7 @@ public partial class App : Application
 			{
 				Settings settings = new Settings()
 				{
-					Servers = ["https://localhost:7071/;"],
-					CurrentVersion = "1.0.0",
+					Servers = ["http://89.208.210.86/;"],
 					UpdatesPeriod = UpdatesPeriod.Periods.ElementAt(1),
 					SaveArchive = true
 				};

@@ -4,13 +4,13 @@ using UM.Models.Files.View;
 
 namespace Desktop.Core.Api;
 
-public class ApiVersions(Settings settings) : ApiBase(settings)
+public class ApiVersions(List<String> Servers) : ApiBase(Servers)
 {
 	public async Task<List<VersionView>> GetAllVersions()
     {
-        var client = HttpClient;
+        var client = await InitHttpClient();
 
-        var res = await client.GetStringAsync("api/UpdateManager/GetAllVersions");
+        var res = await client.GetStringAsync("api/Update/GetVersions");
 
         var options = new JsonSerializerOptions()
         {
@@ -22,11 +22,11 @@ public class ApiVersions(Settings settings) : ApiBase(settings)
 
     public async Task GetUpdate(string build)
     {
-        var client = HttpClient;
+        var client = await InitHttpClient();
 
         var filePath = "updates";
 
-        var res = await client.GetAsync($"api/UpdateManager/GetUpdate?build={build}");
+        var res = await client.GetAsync($"api/Update/DownloadUpdate?build={build}");
 
         if (res.IsSuccessStatusCode)
         {
@@ -41,11 +41,11 @@ public class ApiVersions(Settings settings) : ApiBase(settings)
 
     public async Task GetUpdateById(Guid id)
     {
-        var client = HttpClient;
+        var client = await InitHttpClient();
 
         var filePath = "updates";
 
-        var res = await client.GetAsync($"api/UpdateManager/GetUpdate?build={id}");
+        var res = await client.GetAsync($"api/Update/DownloadUpdate?build={id}");
 
         if (res.IsSuccessStatusCode)
         {
@@ -60,9 +60,9 @@ public class ApiVersions(Settings settings) : ApiBase(settings)
 
     public async Task<string> GetLastUpdate()
     {
-        var client = HttpClient;
+        var client = await InitHttpClient();
 
-        var res = await client.GetStringAsync("api/UpdateManager/GetLastUpdate");
+        var res = await client.GetStringAsync("api/Update/GetLastUpdate");
 
         var options = new JsonSerializerOptions()
         {
@@ -75,6 +75,7 @@ public class ApiVersions(Settings settings) : ApiBase(settings)
     private void SaveStreamAsFile(string filePath, Stream inputStream, string fileName)
     {
         DirectoryInfo info = new DirectoryInfo(filePath);
+
         if (!info.Exists)
         {
             info.Create();
