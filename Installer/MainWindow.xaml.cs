@@ -101,7 +101,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		{
 			MessageBox.Show("Не удалось загрузить обновление");
 
-			Process.Start(Environment.CurrentDirectory + "/ClientApp.exe");
+			Process.Start(Environment.CurrentDirectory + "/TimeTableManager.exe");
 		}
 	}
 
@@ -126,7 +126,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
 	private void CloseButton_OnClick(object sender, RoutedEventArgs e)
 	{
-		Process.Start(Environment.CurrentDirectory + "/ClientApp.exe");
+		Process.Start(Environment.CurrentDirectory + "/TimeTableManager.exe");
 
 		Application.Current.Shutdown();
 	}

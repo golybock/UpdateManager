@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 using System.Text.Json;
 using System.Windows;
+using ClientApp.Windows;
 using Desktop.Core.Models;
 
 namespace ClientApp;
@@ -10,7 +13,12 @@ namespace ClientApp;
 /// </summary>
 public partial class App : Application
 {
-	public static string CurrentVersion => Environment.Version.ToString();
+	public static string GetCurrentVersion()
+	{
+		Assembly assembly = Assembly.GetExecutingAssembly();
+		FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+		return versionInfo.FileVersion!;
+	}
 
 	public static Settings Settings
 	{
@@ -45,4 +53,5 @@ public partial class App : Application
 		var res = JsonSerializer.Serialize(settings);
 		File.WriteAllText("settings.json", res);
 	}
+
 }

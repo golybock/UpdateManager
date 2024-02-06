@@ -34,10 +34,7 @@ public partial class SettingsPage : Page
 	{
 		try
 		{
-			Assembly assembly = Assembly.GetExecutingAssembly();
-			FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-
-			VersionCard.Header += fvi.FileVersion;
+			VersionCard.Header += App.GetCurrentVersion();
 
 			var api = new ApiVersions(_settings.Servers);
 
@@ -49,7 +46,7 @@ public partial class SettingsPage : Page
 
 			VersionCard.Description += lastVersion?.Build;
 
-			if (VersionToInt(lastVersion?.Build!) > VersionToInt(fvi.FileVersion!))
+			if (VersionToInt(lastVersion?.Build!) > VersionToInt(App.GetCurrentVersion()))
 			{
 				UpdateButton.Visibility = Visibility.Visible;
 			}
@@ -152,10 +149,12 @@ public partial class SettingsPage : Page
 			var lastVersion = versions.MaxBy(c => c.Timestamp);
 
 			Process.Start("Installer.exe", lastVersion!.Id.ToString());
+
+			Environment.Exit(0);
 		}
 		catch (Exception exception)
 		{
-			MessageBox.Show("Не удалось найти установочные файлы");
+			MessageBox.Show("Не удалось найти установочные файлы, требуется переустановка");
 		}
 	}
 }

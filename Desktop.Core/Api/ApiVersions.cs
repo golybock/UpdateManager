@@ -45,7 +45,7 @@ public class ApiVersions(List<String> Servers) : ApiBase(Servers)
 
         var filePath = "updates";
 
-        var res = await client.GetAsync($"api/Update/DownloadUpdate?build={id}");
+        var res = await client.GetAsync($"api/Update/DownloadUpdateById?id={id}");
 
         if (res.IsSuccessStatusCode)
         {

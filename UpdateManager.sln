@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UM.Models.Files.Blank", "UM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{96EB8F23-E78E-467A-8727-98EDC24610C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApp", "ClientApp\ClientApp.csproj", "{2FAD419A-3F17-4C7F-B331-E19D17E44152}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimetableManager", "TimetableManager\TimetableManager.csproj", "{2FAD419A-3F17-4C7F-B331-E19D17E44152}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop.UIKit", "Desktop.UIKit", "{D8B3C007-6F61-424F-9AFE-B52390C9D822}"
 EndProject

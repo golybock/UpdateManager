@@ -7,9 +7,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
         <AssemblyVersion>1.0.2</AssemblyVersion>
+        <AssemblyName>TimetableManager</AssemblyName>
+        <RootNamespace>TimetableManager</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
       <PackageReference Include="ModernWpfUI" Version="0.9.6" />
       <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
     </ItemGroup>
@@ -28,15 +31,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Icons\settings_icon.png" />
       <Resource Include="Icons\settings_icon.png" />
-      <None Remove="Icons\zip_icon.png" />
       <Resource Include="Icons\zip_icon.png" />
-      <None Remove="Icons\server_icon.png" />
       <Resource Include="Icons\server_icon.png" />
-      <None Remove="Icons\auto_update_icon.png" />
       <Resource Include="Icons\auto_update_icon.png" />
-      <None Remove="Icons\info_icon.png" />
       <Resource Include="Icons\info_icon.png" />
     </ItemGroup>
 
