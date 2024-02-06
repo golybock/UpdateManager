@@ -26,7 +26,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 	private string _status;
 	private int _progress = 0;
 
-	private ApiVersions _apiVersions;
+	private readonly ApiVersions _apiVersions;
 
 	public string Status
 	{
