@@ -9,12 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update=".ignore">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Desktop.Core\Desktop.Core.csproj" />
     </ItemGroup>
 

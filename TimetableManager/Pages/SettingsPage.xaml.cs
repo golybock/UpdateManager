@@ -36,7 +36,7 @@ public partial class SettingsPage : Page
 		{
 			VersionCard.Header += App.GetCurrentVersion();
 
-			var api = new ApiVersions(_settings.Servers);
+			var api = new ApiUpdater(_settings.Servers);
 
 			var versions = await api.GetAllVersions();
 
@@ -142,7 +142,7 @@ public partial class SettingsPage : Page
 	{
 		try
 		{
-			var api = new ApiVersions(_settings.Servers);
+			var api = new ApiUpdater(_settings.Servers);
 
 			var versions = await api.GetAllVersions();
 

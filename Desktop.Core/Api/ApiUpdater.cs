@@ -4,7 +4,7 @@ using UM.Models.Files.View;
 
 namespace Desktop.Core.Api;
 
-public class ApiVersions(List<String> Servers) : ApiBase(Servers)
+public class ApiUpdater(List<String> Servers) : ApiBase(Servers)
 {
 	public async Task<List<VersionView>> GetAllVersions()
     {
@@ -45,16 +45,23 @@ public class ApiVersions(List<String> Servers) : ApiBase(Servers)
 
         var filePath = "updates";
 
-        var res = await client.GetAsync($"api/Update/DownloadUpdateById?id={id}");
+        try
+        {
+            var res = await client.GetAsync($"api/Update/DownloadUpdateById?id={id}");
 
-        if (res.IsSuccessStatusCode)
-        {
-            Stream fileStream = await res.Content.ReadAsStreamAsync();
-            SaveStreamAsFile(filePath, fileStream, $"{id}.zip");
+            if (res.IsSuccessStatusCode)
+            {
+                Stream fileStream = await res.Content.ReadAsStreamAsync();
+                SaveStreamAsFile(filePath, fileStream, $"{id}.zip");
+            }
+            else
+            {
+                throw new Exception("Ошибка при загрузке обновления");
+            }
         }
-        else
+        catch (Exception e)
         {
-            throw new Exception("Ошибка при получении файла");
+            throw new Exception("Ошибка при загрузке обновления");
         }
     }
 
@@ -64,12 +71,7 @@ public class ApiVersions(List<String> Servers) : ApiBase(Servers)
 
         var res = await client.GetStringAsync("api/Update/GetLastUpdate");
 
-        var options = new JsonSerializerOptions()
-        {
-            PropertyNameCaseInsensitive = true
-        };
-
-        return JsonSerializer.Deserialize<string>(res, options)!;
+        return res;
     }
 
     private void SaveStreamAsFile(string filePath, Stream inputStream, string fileName)

@@ -3,32 +3,21 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Desktop.Core.Api;
 using Desktop.Core.Models;
 
 namespace Installer;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window, INotifyPropertyChanged
 {
-	private string _status;
+	private readonly Settings _settings;
+	private readonly ApiUpdater _apiUpdater;
+
+	private string _status = "Инициализация";
 	private int _progress = 0;
 
-	private readonly ApiVersions _apiVersions;
-
-	public string Status
+	public String Status
 	{
 		get => _status;
 		set
@@ -39,7 +28,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		}
 	}
 
-	public int Progress
+	public Int32 Progress
 	{
 		get => _progress;
 		set
@@ -50,59 +39,97 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		}
 	}
 
-	private readonly Settings _settings = App.Settings;
-
 	public MainWindow()
 	{
 		InitializeComponent();
 
 		DataContext = this;
 
-		_status = "Начало установки";
+		_settings = App.Settings;
+		_apiUpdater = new ApiUpdater(_settings.Servers);
 
 		var args = Environment.GetCommandLineArgs();
 
 		var versionId = Guid.Parse(args[1]);
-
-		_apiVersions = new ApiVersions(_settings.Servers);
 
 		Install(versionId);
 	}
 
 	private async void Install(Guid id)
 	{
+		try
+		{
+			_status = "Начало установки";
+
+			await DownloadUpdateAsync(id);
+
+			ExtractFiles(id);
+
+			FinalInstall();
+		}
+		catch (Exception e)
+		{
+			MessageBox.Show(e.Message);
+		}
+	}
+
+	private async Task DownloadUpdateAsync(Guid id)
+	{
 		Status = "Загрузка обновления";
+
+		await DownloadFiles(id);
 		Progress += 40;
+	}
 
-		await DownloadUpdate(id);
-
+	private void ExtractFiles(Guid id)
+	{
 		Status = "Установка обновления";
-		Progress += 40;
 
 		ZipFile.ExtractToDirectory(Environment.CurrentDirectory + "/updates/" + id + ".zip", Environment.CurrentDirectory, true);
 
-		if (!_settings.SaveArchive)
-		{
-			File.Delete(Environment.CurrentDirectory + "/updates/" + id + ".zip");
-		}
+		DeleteArchive(id);
+		Progress += 40;
+	}
 
-		Progress += 20;
+	private void FinalInstall()
+	{
+		Progress = 100;
 		Status = "Установлено";
 		CloseButton.Visibility = Visibility.Visible;
 	}
 
-	private async Task DownloadUpdate(Guid id)
+	private void DeleteArchive(Guid id)
+	{
+		if (!_settings.SaveArchive)
+		{
+			File.Delete(Environment.CurrentDirectory + "/updates/" + id + ".zip");
+		}
+	}
+
+	private async Task DownloadFiles(Guid id)
 	{
 		try
 		{
-			await _apiVersions.GetUpdateById(id);
+			await _apiUpdater.GetUpdateById(id);
 		}
 		catch (Exception e)
 		{
-			MessageBox.Show("Не удалось загрузить обновление");
-
 			Process.Start(Environment.CurrentDirectory + "/TimeTableManager.exe");
+
+			throw new Exception("Не удалось загрузить обновление");
 		}
+	}
+
+	private void CloseButton_OnClick(object sender, RoutedEventArgs e)
+	{
+		CloseInstaller();
+	}
+
+	private static void CloseInstaller()
+	{
+		Process.Start(Environment.CurrentDirectory + "/TimeTableManager.exe");
+
+		Application.Current.Shutdown();
 	}
 
 	#region property change
@@ -123,11 +150,4 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 	}
 
 	#endregion
-
-	private void CloseButton_OnClick(object sender, RoutedEventArgs e)
-	{
-		Process.Start(Environment.CurrentDirectory + "/TimeTableManager.exe");
-
-		Application.Current.Shutdown();
-	}
 }
