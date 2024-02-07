@@ -1,6 +1,4 @@
-﻿using Desktop.Core.Models;
-
-namespace Desktop.Core.Api;
+﻿namespace Desktop.Core.Api;
 
 public class ApiBase
 {

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using ClientApp.Pages;
 using ModernWpf.Controls;
+using TimetableManager.Pages;
 
 namespace ClientApp.Windows;
 

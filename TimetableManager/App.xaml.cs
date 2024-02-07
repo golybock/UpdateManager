@@ -4,7 +4,8 @@ using System.Reflection;
 using System.Text.Json;
 using System.Windows;
 using ClientApp.Windows;
-using Desktop.Core.Models;
+using SharedModels;
+using UM.Tools.Enums;
 
 namespace ClientApp;
 

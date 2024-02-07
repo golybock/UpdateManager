@@ -1,12 +1,14 @@
 ﻿using System.Diagnostics;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ClientApp;
 using Desktop.Core.Api;
-using Desktop.Core.Models;
+using SharedModels;
+using UM.Tools.Enums;
+using UM.Tools.Extensions;
 
-namespace ClientApp.Pages;
+namespace TimetableManager.Pages;
 
 public partial class SettingsPage : Page
 {
@@ -18,16 +20,21 @@ public partial class SettingsPage : Page
 
 		_settings = App.Settings;
 
-		SaveArchiveCheckBox.IsChecked = _settings.SaveArchive;
-
-		var periods = UpdatesPeriod.Periods;
-
-		PeriodComboBox.ItemsSource = periods;
-		PeriodComboBox.SelectedValue = periods.FirstOrDefault(c => c.Id == _settings.UpdatesPeriod.Id);
-
-		ServersTextBox.Text = string.Join(";", _settings.Servers);
+		InitSettingsPage();
 
 		LoadVersion();
+	}
+
+	private void InitSettingsPage()
+	{
+		SaveArchiveCheckBox.IsChecked = _settings.SaveArchive;
+
+		var periods = UpdatesPeriodExtension.GetAsStringEnumerable().ToList();
+
+		PeriodComboBox.ItemsSource = periods;
+		PeriodComboBox.SelectedValue = periods.FirstOrDefault(c => c == _settings.UpdatesPeriod.GetDisplayName());
+
+		ServersTextBox.Text = string.Join(";", _settings.Servers);
 	}
 
 	private async void LoadVersion()

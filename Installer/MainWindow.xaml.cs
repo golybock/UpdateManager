@@ -5,7 +5,7 @@ using System.IO.Compression;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using Desktop.Core.Api;
-using Desktop.Core.Models;
+using SharedModels;
 
 namespace Installer;
 
