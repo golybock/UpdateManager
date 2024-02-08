@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ClientApp;
 using Desktop.Core.Api;
 using SharedModels;
 using UM.Tools.Enums;
@@ -13,12 +12,15 @@ namespace TimetableManager.Pages;
 public partial class SettingsPage : Page
 {
 	private readonly Settings _settings;
+	private readonly List<string> _periods;
 
 	public SettingsPage()
 	{
 		InitializeComponent();
 
 		_settings = App.Settings;
+
+		_periods = UpdatesPeriodExtension.GetAsStringEnumerable().ToList();
 
 		InitSettingsPage();
 
@@ -29,10 +31,8 @@ public partial class SettingsPage : Page
 	{
 		SaveArchiveCheckBox.IsChecked = _settings.SaveArchive;
 
-		var periods = UpdatesPeriodExtension.GetAsStringEnumerable().ToList();
-
-		PeriodComboBox.ItemsSource = periods;
-		PeriodComboBox.SelectedValue = periods.FirstOrDefault(c => c == _settings.UpdatesPeriod.GetDisplayName());
+		PeriodComboBox.ItemsSource = _periods;
+		PeriodComboBox.SelectedValue = _periods.FirstOrDefault(c => c == _settings.UpdatesPeriod.GetDisplayName());
 
 		ServersTextBox.Text = string.Join(";", _settings.Servers);
 	}
@@ -62,15 +62,13 @@ public partial class SettingsPage : Page
 		{
 			Console.WriteLine(e);
 
-			var periods = UpdatesPeriod.Periods;
-
 			VersionCard.Description += "не удалось загрузить";
 			VersionsItemsRepeater.Visibility = Visibility.Collapsed;
 
-			PeriodComboBox.ItemsSource = periods;
-			PeriodComboBox.SelectedValue = periods.ElementAt(0);
+			PeriodComboBox.ItemsSource = _periods;
+			PeriodComboBox.SelectedValue = _periods.ElementAt(0);
 
-			_settings.UpdatesPeriod = periods.ElementAt(0);
+			_settings.UpdatesPeriod = UpdatesPeriod.Never;
 			App.SaveSettings(_settings);
 
 			MessageBox.Show("Не удалось получить данные с сервера, проверьте адрес или подключение к интернету");
@@ -106,7 +104,7 @@ public partial class SettingsPage : Page
 
 	private void PeriodComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		_settings.UpdatesPeriod = (PeriodComboBox.SelectedItem as UpdatesPeriod)!;
+		_settings.UpdatesPeriod = (UpdatesPeriod) Enum.Parse(typeof(UpdatesPeriod), PeriodComboBox.SelectedItem as string ?? string.Empty, true)!;
 		App.SaveSettings(_settings);
 	}
 
@@ -163,5 +161,10 @@ public partial class SettingsPage : Page
 		{
 			MessageBox.Show("Не удалось найти установочные файлы, требуется переустановка");
 		}
+	}
+
+	private void DownloadVersionButton_OnClick(object sender, RoutedEventArgs e)
+	{
+		// throw new NotImplementedException();
 	}
 }

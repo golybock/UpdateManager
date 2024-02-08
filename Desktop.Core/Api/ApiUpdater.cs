@@ -3,7 +3,7 @@ using UM.Models.Files.View;
 
 namespace Desktop.Core.Api;
 
-public class ApiUpdater(List<String> Servers) : ApiBase(Servers)
+public class ApiUpdater(List<String> servers) : ApiBase(servers)
 {
 	public async Task<List<VersionView>> GetAllVersions()
     {
@@ -60,7 +60,8 @@ public class ApiUpdater(List<String> Servers) : ApiBase(Servers)
         }
         catch (Exception e)
         {
-            throw new Exception("Ошибка при загрузке обновления");
+            // throw new Exception("Ошибка при загрузке обновления");
+            throw new Exception(e.Message);
         }
     }
 

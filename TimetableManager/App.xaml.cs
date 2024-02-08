@@ -3,11 +3,10 @@ using System.IO;
 using System.Reflection;
 using System.Text.Json;
 using System.Windows;
-using ClientApp.Windows;
 using SharedModels;
 using UM.Tools.Enums;
 
-namespace ClientApp;
+namespace TimetableManager;
 
 /// <summary>
 /// Interaction logic for App.xaml
@@ -38,7 +37,7 @@ public partial class App : Application
 				Settings settings = new Settings()
 				{
 					Servers = ["http://89.208.210.86/;"],
-					UpdatesPeriod = UpdatesPeriod.Periods.ElementAt(1),
+					UpdatesPeriod = UpdatesPeriod.OnStartup,
 					SaveArchive = true
 				};
 
@@ -54,5 +53,4 @@ public partial class App : Application
 		var res = JsonSerializer.Serialize(settings);
 		File.WriteAllText("settings.json", res);
 	}
-
 }

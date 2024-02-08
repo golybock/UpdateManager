@@ -48,7 +48,6 @@
                                Margin="5">
 
                 <ComboBox Name="PeriodComboBox"
-                          DisplayMemberPath="Name"
                           SelectionChanged="PeriodComboBox_OnSelectionChanged"/>
 
             </card:SettingsCard>
@@ -78,13 +77,46 @@
                 <controls:ItemsRepeater Name="VersionsItemsRepeater">
 
                     <controls:ItemsRepeater.ItemTemplate>
+                        <!-- ReSharper disable once Xaml.RedundantResource -->
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Build, StringFormat=Версия: {0}}"></TextBlock>
-                                <TextBlock Text="{Binding Timestamp, StringFormat=Дата выхода: MM/dd/yyyy H:mm}"></TextBlock>
-                                <TextBlock Text="{Binding Notes}"></TextBlock>
-                                <TextBlock Text=""></TextBlock>
-                            </StackPanel>
+                            <Grid>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0"
+                                            Grid.Row="0"
+                                            Orientation="Vertical">
+
+                                    <TextBlock Text="{Binding Build, StringFormat=Версия: {0}}"/>
+                                    <TextBlock Text="{Binding Timestamp, StringFormat=Дата выхода: MM/dd/yyyy H:mm}"/>
+                                    <TextBlock Text="{Binding Notes}"/>
+
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1"
+                                            Grid.Row="0"
+                                            Orientation="Vertical"
+                                            VerticalAlignment="Center">
+
+                                    <Button Content="Скачать"
+                                            Width="125"
+                                            Margin="5"
+                                            CommandParameter="{Binding Id}"
+                                            Click="DownloadVersionButton_OnClick"/>
+
+                                </StackPanel>
+
+                                <Separator Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Margin="5"/>
+
+                            </Grid>
                         </DataTemplate>
                     </controls:ItemsRepeater.ItemTemplate>
                 </controls:ItemsRepeater>

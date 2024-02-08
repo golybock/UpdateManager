@@ -70,6 +70,8 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		catch (Exception e)
 		{
 			MessageBox.Show(e.Message);
+
+			CloseInstaller();
 		}
 	}
 
@@ -114,9 +116,8 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		}
 		catch (Exception e)
 		{
-			Process.Start(Environment.CurrentDirectory + "/TimeTableManager.exe");
-
-			throw new Exception("Не удалось загрузить обновление");
+			// throw new Exception("Не удалось загрузить обновление");
+			throw new Exception(e.Message);
 		}
 	}
 

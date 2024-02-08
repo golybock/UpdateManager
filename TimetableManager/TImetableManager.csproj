@@ -9,6 +9,7 @@
         <AssemblyVersion>1.0.2</AssemblyVersion>
         <AssemblyName>TimetableManager</AssemblyName>
         <RootNamespace>TimetableManager</RootNamespace>
+        <ApplicationIcon>Icons\icon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,6 +29,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Desktop.Core\Desktop.Core.csproj" />
       <ProjectReference Include="..\Desktop.UiKit\Desktop.UiKit.csproj" />
+<!--      <ProjectReference Include="..\Installer\Installer.csproj" />-->
     </ItemGroup>
 
     <ItemGroup>
