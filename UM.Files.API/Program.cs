@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.HttpOverrides;
 using Npgsql.Extension.Options;
-using UM.Repositories.Repositories;
-using UM.Services.Services;
+using UM.Files.Repositories.Repositories;
+using UM.Files.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

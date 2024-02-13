@@ -1,4 +1,4 @@
-﻿namespace UM.API.Services;
+﻿namespace UM.Files.API.Services;
 
 public class MailService : BackgroundService
 {

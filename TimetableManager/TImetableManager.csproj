@@ -29,6 +29,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Desktop.Core\Desktop.Core.csproj" />
       <ProjectReference Include="..\Desktop.UiKit\Desktop.UiKit.csproj" />
+      <ProjectReference Include="..\Installer\Installer.csproj" />
 <!--      <ProjectReference Include="..\Installer\Installer.csproj" />-->
     </ItemGroup>
 
@@ -38,6 +39,12 @@
       <Resource Include="Icons\server_icon.png" />
       <Resource Include="Icons\auto_update_icon.png" />
       <Resource Include="Icons\info_icon.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="settings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using Npgsql.Extension.Options;
 using Npgsql.Extension.Repositories;
 using UM.Models.Files;
 
-namespace UM.Repositories.Repositories;
+namespace UM.Files.Repositories.Repositories;
 
 public class VersionRepository : NpgsqlRepository, IVersionRepository
 {

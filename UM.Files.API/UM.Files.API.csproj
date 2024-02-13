@@ -37,7 +37,7 @@
     <ItemGroup>
       <ProjectReference Include="..\UM.Models.Files.Blank\UM.Models.Files.Blank.csproj" />
       <ProjectReference Include="..\UM.Models.Files.View\UM.Models.Files.View.csproj" />
-      <ProjectReference Include="..\UM.Services\UM.Services.csproj" />
+      <ProjectReference Include="..\UM.Files.Services\UM.Files.Services.csproj" />
       <ProjectReference Include="..\UM.Tools\UM.Tools.csproj" />
     </ItemGroup>
 

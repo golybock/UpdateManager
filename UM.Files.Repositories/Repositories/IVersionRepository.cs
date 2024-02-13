@@ -1,6 +1,6 @@
 ﻿using UM.Models.Files;
 
-namespace UM.Repositories.Repositories;
+namespace UM.Files.Repositories.Repositories;
 
 // todo maybe create dependency repo
 public interface IVersionRepository

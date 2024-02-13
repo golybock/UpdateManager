@@ -2,7 +2,7 @@
 using ModernWpf.Controls;
 using TimetableManager.Pages;
 
-namespace ClientApp.Windows;
+namespace TimetableManager.Windows;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

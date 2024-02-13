@@ -11,7 +11,7 @@
       <ProjectReference Include="..\UM.Models.Files.Database\UM.Models.Files.Database.csproj" />
       <ProjectReference Include="..\UM.Models.Files.Domain\UM.Models.Files.Domain.csproj" />
       <ProjectReference Include="..\UM.Models.Files.View\UM.Models.Files.View.csproj" />
-      <ProjectReference Include="..\UM.Repositories\UM.Repositories.csproj" />
+      <ProjectReference Include="..\UM.Files.Repositories\UM.Files.Repositories.csproj" />
     </ItemGroup>
 
 </Project>

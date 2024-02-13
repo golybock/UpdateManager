@@ -1,7 +1,7 @@
 ﻿using UM.Models.Files.Blank;
 using UM.Models.Files.View;
 
-namespace UM.Services.Services;
+namespace UM.Files.Services.Services;
 
 public interface IVersionService
 {

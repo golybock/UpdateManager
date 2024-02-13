@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using NuGet.ProjectModel;
 using UM.Models.Files.Blank;
-using UM.Services.Services;
+using UM.Files.Services.Services;
 
-namespace UM.API.Controllers
+namespace UM.Files.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

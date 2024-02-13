@@ -2,9 +2,9 @@
 using UM.Models.Files.Blank;
 using UM.Models.Files.Domain;
 using UM.Models.Files.View;
-using UM.Repositories.Repositories;
+using UM.Files.Repositories.Repositories;
 
-namespace UM.Services.Services;
+namespace UM.Files.Services.Services;
 
 public class VersionService : IVersionService
 {
