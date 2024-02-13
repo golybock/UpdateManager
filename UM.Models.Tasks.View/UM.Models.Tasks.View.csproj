@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>UM.Models.Task.View</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\UM.Models.Tasks.Domain\UM.Models.Tasks.Domain.csproj" />
+      <ProjectReference Include="..\UM.Tools\UM.Tools.csproj" />
+    </ItemGroup>
+
+</Project>

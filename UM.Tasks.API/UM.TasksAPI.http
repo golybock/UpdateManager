@@ -1,0 +1,6 @@
+@UM.TasksAPI_HostAddress = http://localhost:5181
+
+GET {{UM.TasksAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
