@@ -19,4 +19,9 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\UM.Tasks.Repositories\UM.Tasks.Repositories.csproj" />
+      <ProjectReference Include="..\UM.Tasks.Services\UM.Tasks.Services.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -160,7 +160,7 @@ public class VersionRepository : NpgsqlRepository, IVersionRepository
 
 	#region version
 
-// todo check
+	// todo check
 	public async Task<IEnumerable<VersionDatabase>> GetVersionsAsync(bool archived = false)
 	{
 		var query = "select * from version where available = $1";

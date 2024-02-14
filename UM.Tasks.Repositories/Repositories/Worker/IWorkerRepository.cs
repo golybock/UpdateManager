@@ -4,9 +4,11 @@ namespace UM.Tasks.Repositories.Repositories.Worker;
 
 public interface IWorkerRepository
 {
-	public Task<IEnumerable<WorkerDatabase>> GetWorkers();
+	public Task<IEnumerable<WorkerDatabase>> GetWorkersAsync();
 
-	public Task<WorkerDatabase> GetWorker(string login, string password);
+	public Task<WorkerDatabase?> GetWorkerAsync(Guid id);
 
-	public Task<Boolean> CreateWorker(WorkerDatabase workerDatabase);
+	public Task<WorkerDatabase?> GetWorkerAsync(string login, byte[] password);
+
+	public Task<Boolean> CreateWorkerAsync(WorkerDatabase workerDatabase);
 }

@@ -25,23 +25,10 @@ public class TaskView
 
 	public String? Solution { get; set; }
 
-	public TaskView(TaskDomain taskDomain, WorkerDomain workerDomain)
+	public TaskView(TaskDomain taskDomain)
 	{
 		Id = taskDomain.Id;
-		Worker = new WorkerView(workerDomain);
-		Priority = (Priority) taskDomain.Priority;
-		Status = (Status) taskDomain.Status;
-		CreatedTime = taskDomain.CreatedTime;
-		StartTime = taskDomain.StartTime;
-		EndTime = taskDomain.EndTime;
-		ClientEmail = taskDomain.ClientEmail;
-		Solution = taskDomain.Solution;
-	}
-
-	public TaskView(TaskDomain taskDomain, WorkerView workerView)
-	{
-		Id = taskDomain.Id;
-		Worker = workerView;
+		Worker = taskDomain.Worker != null ? new WorkerView(taskDomain.Worker) : null;
 		Priority = (Priority) taskDomain.Priority;
 		Status = (Status) taskDomain.Status;
 		CreatedTime = taskDomain.CreatedTime;

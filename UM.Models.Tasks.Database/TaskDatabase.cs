@@ -1,4 +1,6 @@
-﻿namespace UM.Models.Tasks.Database;
+﻿using UM.Models.Tasks.Blank;
+
+namespace UM.Models.Tasks.Database;
 
 public class TaskDatabase
 {
@@ -21,4 +23,19 @@ public class TaskDatabase
 	public String? ClientEmail { get; set; }
 
 	public String? Solution { get; set; }
+
+	public TaskDatabase() { }
+
+	public TaskDatabase(Guid id, TaskBlank taskBlank)
+	{
+		Id = id;
+		Description = taskBlank.Description;
+		WorkerId = taskBlank.WorkerId;
+		Priority = (int) taskBlank.Priority;
+		Status = (int) taskBlank.Status;
+		StartTime = taskBlank.StartTime;
+		EndTime = taskBlank.EndTime;
+		ClientEmail = taskBlank.ClientEmail;
+		Solution = taskBlank.Solution;
+	}
 }

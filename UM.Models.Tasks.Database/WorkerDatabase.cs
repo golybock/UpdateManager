@@ -1,4 +1,6 @@
-﻿namespace UM.Models.Tasks.Database;
+﻿using UM.Models.Tasks.Blank;
+
+namespace UM.Models.Tasks.Database;
 
 public class WorkerDatabase
 {
@@ -10,5 +12,15 @@ public class WorkerDatabase
 
 	public String Login { get; set; } = null!;
 
-	public required Byte[] Password { get; set; }
+	public Byte[] Password { get; set; } = null!;
+
+	public WorkerDatabase() { }
+
+	public WorkerDatabase(WorkerBlank workerBlank)
+	{
+		Id = Guid.NewGuid();
+		RoleId = workerBlank.RoleId;
+		FullName = workerBlank.FullName;
+		Login = workerBlank.Login;
+	}
 }

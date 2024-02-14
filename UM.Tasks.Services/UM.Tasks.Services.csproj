@@ -8,6 +8,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\UM.Models.Tasks.Blank\UM.Models.Tasks.Blank.csproj" />
+      <ProjectReference Include="..\UM.Models.Tasks.Domain\UM.Models.Tasks.Domain.csproj" />
+      <ProjectReference Include="..\UM.Models.Tasks.View\UM.Models.Tasks.View.csproj" />
+      <ProjectReference Include="..\UM.Tasks.Repositories\UM.Tasks.Repositories.csproj" />
     </ItemGroup>
 
 </Project>

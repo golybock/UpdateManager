@@ -25,10 +25,10 @@ public class TaskDomain
 
 	public String? Solution { get; set; }
 
-	public TaskDomain(TaskDatabase taskDatabase, WorkerDatabase workerDatabase)
+	public TaskDomain(TaskDatabase taskDatabase, WorkerDatabase? workerDatabase)
 	{
 		Id = taskDatabase.Id;
-		Worker = new WorkerDomain(workerDatabase);
+		Worker = workerDatabase == null ? null : new WorkerDomain(workerDatabase);
 		Priority = (Priority) taskDatabase.Priority;
 		Status = (Status) taskDatabase.Status;
 		CreatedTime = taskDatabase.CreatedTime;
@@ -38,7 +38,7 @@ public class TaskDomain
 		Solution = taskDatabase.Solution;
 	}
 
-	public TaskDomain(TaskDatabase taskDatabase, WorkerDomain workerDomain)
+	public TaskDomain(TaskDatabase taskDatabase, WorkerDomain? workerDomain)
 	{
 		Id = taskDatabase.Id;
 		Worker = workerDomain;
