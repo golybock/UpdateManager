@@ -24,8 +24,4 @@
       <ProjectReference Include="..\UM.Tasks.Services\UM.Tasks.Services.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Controllers\" />
-    </ItemGroup>
-
 </Project>
