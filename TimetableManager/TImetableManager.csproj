@@ -13,6 +13,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="MailKit" Version="4.3.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
       <PackageReference Include="ModernWpfUI" Version="0.9.6" />
       <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.5" />
