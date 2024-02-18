@@ -9,7 +9,7 @@ public class ApiUpdater(List<String> servers) : ApiBase(servers)
     {
         var client = await InitHttpClient();
 
-        var res = await client.GetStringAsync("api/Update/GetVersions");
+        var res = await client.GetStringAsync("api/Updates/GetVersions");
 
         var options = new JsonSerializerOptions()
         {
@@ -19,26 +19,7 @@ public class ApiUpdater(List<String> servers) : ApiBase(servers)
         return JsonSerializer.Deserialize<List<VersionView>>(res, options)!;
     }
 
-    public async Task GetUpdate(string build)
-    {
-        var client = await InitHttpClient();
-
-        var filePath = "updates";
-
-        var res = await client.GetAsync($"api/Update/DownloadUpdate?build={build}");
-
-        if (res.IsSuccessStatusCode)
-        {
-            Stream fileStream = await res.Content.ReadAsStreamAsync();
-            SaveStreamAsFile(filePath, fileStream, $"{build}.zip");
-        }
-        else
-        {
-            throw new Exception("Ошибка при получении файла");
-        }
-    }
-
-    public async Task GetUpdateById(Guid id)
+    public async Task DownloadUpdate(Guid id)
     {
         var client = await InitHttpClient();
 
@@ -46,7 +27,7 @@ public class ApiUpdater(List<String> servers) : ApiBase(servers)
 
         try
         {
-            var res = await client.GetAsync($"api/Update/DownloadUpdateById?id={id}");
+            var res = await client.GetAsync($"api/Updates/DownloadUpdate?id={id}");
 
             if (res.IsSuccessStatusCode)
             {
@@ -63,15 +44,6 @@ public class ApiUpdater(List<String> servers) : ApiBase(servers)
             // throw new Exception("Ошибка при загрузке обновления");
             throw new Exception(e.Message);
         }
-    }
-
-    public async Task<string> GetLastUpdate()
-    {
-        var client = await InitHttpClient();
-
-        var res = await client.GetStringAsync("api/Update/GetLastUpdate");
-
-        return res;
     }
 
     private void SaveStreamAsFile(string filePath, Stream inputStream, string fileName)

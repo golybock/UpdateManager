@@ -112,7 +112,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 	{
 		try
 		{
-			await _apiUpdater.GetUpdateById(id);
+			await _apiUpdater.DownloadUpdate(id);
 		}
 		catch (Exception e)
 		{

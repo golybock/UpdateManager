@@ -29,8 +29,6 @@
     <ItemGroup>
       <ProjectReference Include="..\Desktop.Core\Desktop.Core.csproj" />
       <ProjectReference Include="..\Desktop.UiKit\Desktop.UiKit.csproj" />
-      <ProjectReference Include="..\Installer\Installer.csproj" />
-<!--      <ProjectReference Include="..\Installer\Installer.csproj" />-->
     </ItemGroup>
 
     <ItemGroup>

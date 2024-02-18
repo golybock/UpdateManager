@@ -1,6 +1,6 @@
 {
   "Servers": [
-    "http://89.208.210.86/;"
+    "https://localhost:7079"
   ],
   "SaveArchive": true,
   "UpdatesPeriod": 1,

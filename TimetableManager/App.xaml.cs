@@ -36,7 +36,7 @@ public partial class App : Application
 			{
 				Settings settings = new Settings()
 				{
-					Servers = ["http://89.208.210.86/;"],
+					Servers = ["https://localhost:7079;"],
 					UpdatesPeriod = UpdatesPeriod.OnStartup,
 					SaveArchive = true
 				};

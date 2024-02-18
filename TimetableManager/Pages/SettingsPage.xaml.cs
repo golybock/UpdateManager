@@ -163,8 +163,21 @@ public partial class SettingsPage : Page
 		}
 	}
 
-	private void DownloadVersionButton_OnClick(object sender, RoutedEventArgs e)
+	private async void DownloadVersionButton_OnClick(object sender, RoutedEventArgs e)
 	{
-		// throw new NotImplementedException();
+		try
+		{
+			var btn = sender as Button;
+
+			var id = btn.CommandParameter is Guid guid ? guid : default;
+
+			Process.Start("Installer.exe", id.ToString());
+
+			Environment.Exit(0);
+		}
+		catch (Exception exception)
+		{
+			MessageBox.Show("Не удалось найти установочные файлы, требуется переустановка");
+		}
 	}
 }
