@@ -1,0 +1,103 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Installer/1.0.0": {
+        "dependencies": {
+          "Desktop.Core": "1.0.0"
+        },
+        "runtime": {
+          "Installer.dll": {}
+        }
+      },
+      "Desktop.Core/1.0.0": {
+        "dependencies": {
+          "UM.Models.Files.View": "1.0.0"
+        },
+        "runtime": {
+          "Desktop.Core.dll": {}
+        }
+      },
+      "UM.Models.Files.Blank/1.0.0": {
+        "dependencies": {
+          "UM.Tools": "1.0.0"
+        },
+        "runtime": {
+          "UM.Models.Files.Blank.dll": {}
+        }
+      },
+      "UM.Models.Files.Database/1.0.0": {
+        "dependencies": {
+          "UM.Models.Files.Blank": "1.0.0"
+        },
+        "runtime": {
+          "UM.Models.Files.Database.dll": {}
+        }
+      },
+      "UM.Models.Files.Domain/1.0.0": {
+        "dependencies": {
+          "UM.Models.Files.Database": "1.0.0",
+          "UM.Tools": "1.0.0"
+        },
+        "runtime": {
+          "UM.Models.Files.Domain.dll": {}
+        }
+      },
+      "UM.Models.Files.View/1.0.0": {
+        "dependencies": {
+          "UM.Models.Files.Domain": "1.0.0",
+          "UM.Tools": "1.0.0"
+        },
+        "runtime": {
+          "UM.Models.Files.View.dll": {}
+        }
+      },
+      "UM.Tools/1.0.0": {
+        "runtime": {
+          "UM.Tools.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Installer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Desktop.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UM.Models.Files.Blank/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UM.Models.Files.Database/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UM.Models.Files.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UM.Models.Files.View/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UM.Tools/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
