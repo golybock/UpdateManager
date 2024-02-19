@@ -27,7 +27,7 @@ public class WorkerService(IWorkerRepository workerRepository) : IWorkerService
 
 	public async Task<WorkerView?> GetWorkerAsync(string login, string password)
 	{
-		var passwordHash = await Sha256Hash.Hash(password);
+		var passwordHash = Sha256Hash.Hash(password);
 
 		var worker = await workerRepository.GetWorkerAsync(login, passwordHash);
 
@@ -45,7 +45,7 @@ public class WorkerService(IWorkerRepository workerRepository) : IWorkerService
 	{
 		var workerDatabase = new WorkerDatabase(workerBlank)
 		{
-			Password = await Sha256Hash.Hash(workerBlank.Password)
+			Password = Sha256Hash.Hash(workerBlank.Password)
 		};
 
 		var result = await workerRepository.CreateWorkerAsync(workerDatabase);

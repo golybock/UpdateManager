@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TasksSite.Data;
+using UM.Tools.Crypto;
 using Task = TasksSite.Data.Task;
 
 namespace TasksSite.Pages;
@@ -29,8 +30,7 @@ public class IndexModel : PageModel
 		_context = context;
 
 		// render problems
-		Problems = _context.Tasks.Include(c => c.Status)
-			.Include(c => c.Priority)
+		Problems = _context.Tasks
 			.Include(c => c.Worker)
 			.ToList();
 	}
@@ -39,7 +39,9 @@ public class IndexModel : PageModel
 	{
 		try
 		{
-			var user = _context.Workers.FirstOrDefault(c => c.Login == Login && c.Password == Password);
+			var passHash = Sha256Hash.Hash(Password);
+
+			var user = _context.Workers.ToList().FirstOrDefault(c => c.Login == Login && c.Password.SequenceEqual(passHash));
 
 			if (user == null)
 			{

@@ -25,5 +25,7 @@ public partial class Task
 
     public string? Solution { get; set; }
 
+    public string? Version { get; set; }
+
     public virtual Worker? Worker { get; set; }
 }

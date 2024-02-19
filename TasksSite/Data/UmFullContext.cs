@@ -63,6 +63,9 @@ public partial class UmFullContext : DbContext
             entity.Property(e => e.Solution).HasColumnName("solution");
             entity.Property(e => e.StartTime).HasColumnName("start_time");
             entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.Version)
+                .HasMaxLength(100)
+                .HasColumnName("version");
             entity.Property(e => e.WorkerId).HasColumnName("worker_id");
 
             entity.HasOne(d => d.Worker).WithMany(p => p.Tasks)
