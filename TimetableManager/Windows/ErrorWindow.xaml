@@ -15,20 +15,16 @@
             <RowDefinition Height="20*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical"
-                    Margin="20">
-            <Label FontSize="18" Content="Возникла непредвиденная ошибка" />
-            <Label FontSize="16"
-                   Content="Мы уже работаем над этим"
-            />
-            <Label Content="Почта:" Margin="5" />
-            <TextBox Width="250" Height="25" HorizontalAlignment="Left" Margin="5" Name="EmailTextBox" />
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Margin="20">
+            <TextBlock FontSize="18" Text="Возникла непредвиденная ошибка"></TextBlock>
+            <TextBlock FontSize="16" Text="Мы уже работаем над этим, если хотите пполучить помощь или узнать о статусе решения, пожалуйста, оставьте свою почту" TextWrapping="Wrap"></TextBlock>
+            <TextBlock Text="Почта:" Margin="5"></TextBlock>
+            <TextBox Width="250" Height="25" HorizontalAlignment="Left" Margin="5" Name="EmailTextBox"></TextBox>
         </StackPanel>
 
-        <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
-            <Button Name="RestartButton" Click="RestartButton_OnClick" Height="40" Width="100" Content="Перезапуск"
-                    Margin="5" />
-            <Button Name="CloseButton" Click="CloseButton_OnClick" Height="40" Width="100" Content="Закрыть" Margin="5" />
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <Button Name="RestartButton" Click="RestartButton_OnClick" Height="40" Width="100" Content="Перезапустить" Margin="5"></Button>
+            <Button Name="CloseButton" Click="CloseButton_OnClick" Height="40" Width="100" Content="Закрыть" Margin="5"></Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -29,6 +29,20 @@
 
             </card:SettingsCard>
 
+            <card:SettingsCard Name="Exception"
+                               Header="Вызов исключения"
+                               Description="Для тестирования"
+                               IconPath="/TimeTableManager;component/Icons/info_icon.png"
+                               ShowArray="False"
+                               Margin="5">
+
+                <Button Name="CloseButton"
+                        Width="125"
+                        Content="Вызвать ошибку"
+                        Click="CloseButton_OnClick"/>
+
+            </card:SettingsCard>
+
             <card:SettingsCard Header="Сервера обновлений"
                                Description="Сервера для скачивания обновлени(через ;)"
                                IconPath="/TimeTableManager;component/Icons/server_icon.png"
@@ -64,20 +78,6 @@
                         Width="125"
                         Content="Обновить"
                         Click="UpdateButton_OnClick"/>
-
-            </card:SettingsCard>
-
-            <card:SettingsCard Header="Вызов исключения"
-                               Description="Для тестирования"
-                               IconPath="/TimeTableManager;component/Icons/info_icon.png"
-                               ShowArray="False"
-                               Margin="5">
-
-                <Button Name="CloseButton"
-                        Visibility="Collapsed"
-                        Width="125"
-                        Content="Вызвать ошибку"
-                        Click="CloseButton_OnClick"/>
 
             </card:SettingsCard>
 

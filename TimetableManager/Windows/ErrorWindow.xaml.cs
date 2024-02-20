@@ -13,7 +13,7 @@ public partial class ErrorWindow : Window
 		InitializeComponent();
 	}
 
-	private void RestartButton_OnClick(object sender, RoutedEventArgs e)
+	private async void RestartButton_OnClick(object sender, RoutedEventArgs e)
 	{
 		if (EmailTextBox.Text != string.Empty)
 		{
@@ -22,11 +22,28 @@ public partial class ErrorWindow : Window
 				MessageBox.Show("Неверный формат почты");
 				return;
 			}
+
+			await ExceptionMailSender.SendEmailAsync(error, EmailTextBox.Text);
 		}
+
+		new MainWindow().Show();
+
+		Close();
 	}
 
-	private void CloseButton_OnClick(object sender, RoutedEventArgs e)
+	private async void CloseButton_OnClick(object sender, RoutedEventArgs e)
 	{
-		throw new NotImplementedException();
+		if (EmailTextBox.Text != string.Empty)
+		{
+			if (!new EmailAddressAttribute().IsValid(EmailTextBox.Text))
+			{
+				MessageBox.Show("Неверный формат почты");
+				return;
+			}
+
+			await ExceptionMailSender.SendEmailAsync(error, EmailTextBox.Text);
+		}
+
+		Close();
 	}
 }

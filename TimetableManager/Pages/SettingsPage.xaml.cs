@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Desktop.Core.Api;
 using SharedModels;
+using TimetableManager.Windows;
 using UM.Tools.Enums;
 using UM.Tools.Extensions;
 
@@ -13,9 +14,11 @@ public partial class SettingsPage : Page
 {
 	private readonly Settings _settings;
 	private readonly List<string> _periods;
+	private readonly MainWindow _mainWindow;
 
-	public SettingsPage()
+	public SettingsPage(MainWindow mainWindow)
 	{
+		_mainWindow = mainWindow;
 		InitializeComponent();
 
 		_settings = App.Settings;
@@ -186,6 +189,15 @@ public partial class SettingsPage : Page
 
 	private void CloseButton_OnClick(object sender, RoutedEventArgs e)
 	{
-		throw new NotImplementedException();
+		try
+		{
+			throw new Exception("Пример ошибки");
+		}
+		catch (Exception exception)
+		{
+			new ErrorWindow(exception.Message).Show();
+
+			_mainWindow.Close();
+		}
 	}
 }

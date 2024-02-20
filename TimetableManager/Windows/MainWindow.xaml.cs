@@ -18,7 +18,7 @@ public partial class MainWindow : Window
 	{
 		if (args.IsSettingsInvoked)
 		{
-			MainFrame.Navigate(new SettingsPage());
+			MainFrame.Navigate(new SettingsPage(this));
 		}
 	}
 }
