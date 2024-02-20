@@ -159,7 +159,9 @@ public partial class SettingsPage : Page
 		}
 		catch (Exception exception)
 		{
+			Console.WriteLine(exception);
 			MessageBox.Show("Не удалось найти установочные файлы, требуется переустановка");
+			MessageBox.Show(exception.Message);
 		}
 	}
 
