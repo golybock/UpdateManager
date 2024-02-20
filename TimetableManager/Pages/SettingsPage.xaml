@@ -67,6 +67,20 @@
 
             </card:SettingsCard>
 
+            <card:SettingsCard Header="Вызов исключения"
+                               Description="Для тестирования"
+                               IconPath="/TimeTableManager;component/Icons/info_icon.png"
+                               ShowArray="False"
+                               Margin="5">
+
+                <Button Name="CloseButton"
+                        Visibility="Collapsed"
+                        Width="125"
+                        Content="Вызвать ошибку"
+                        Click="CloseButton_OnClick"/>
+
+            </card:SettingsCard>
+
             <TextBlock Text="История обновлений"
                        Margin="12"
                        FontSize="20"
