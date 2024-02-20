@@ -1,0 +1,53 @@
+@page
+@model TimeTableSite.Pages.Timetable.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Удаление</h1>
+
+<h3>Вы уверены?</h3>
+<div>
+    <h4>Штатное расписание</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Номер документа
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Timetable.DocumentNumber)
+        </dd>
+        <dt class="col-sm-2">
+            Дата создания
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Timetable.CreatedDate)
+        </dd>
+        <dt class="col-sm-2">
+            Главный бухгалтер
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Timetable.ChiefAccountant)
+        </dd>
+        <dt class="col-sm-2">
+            Период
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Timetable.Period.Id)
+        </dd>
+        <dt class="col-sm-2">
+            Управляющий
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Timetable.Supervisor.Id)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Timetable.Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-page="./Index">Назад</a>
+    </form>
+</div>

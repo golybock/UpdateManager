@@ -1,0 +1,38 @@
+@page
+@model TimeTableSite.Pages.Allowance.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Редактирование</h1>
+
+<h4>Надбавка</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Allowance.Id" />
+            <div class="form-group">
+                <label class="control-label">Наименование</label>
+                <input asp-for="Allowance.Name" class="form-control" />
+                <span asp-validation-for="Allowance.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Надбавка (руб)</label>
+                <input asp-for="Allowance.Salary" class="form-control" />
+                <span asp-validation-for="Allowance.Salary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Назад</a>
+</div>
+

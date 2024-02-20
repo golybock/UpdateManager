@@ -1,0 +1,32 @@
+@page
+@model TimeTableSite.Pages.Allowance.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Инфомация</h1>
+
+<div>
+    <h4>Надбавка</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Наименование
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Allowance.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Надбавка (руб)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Allowance.Salary)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Allowance.Id">Редактировать</a> |
+    <a asp-page="./Index">Назад</a>
+</div>

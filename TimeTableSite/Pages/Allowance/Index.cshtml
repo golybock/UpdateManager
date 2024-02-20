@@ -1,0 +1,39 @@
+@page
+@model TimeTableSite.Pages.Allowance.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Надбавки</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Наименование
+            </th>
+            <th>
+                Надбавка (руб)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Allowance) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Больше</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

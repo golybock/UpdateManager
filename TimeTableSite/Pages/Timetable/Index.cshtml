@@ -1,0 +1,63 @@
+@page
+@model TimeTableSite.Pages.Timetable.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Штатное расписание</h1>
+
+<p>
+    <a asp-page="Create">
+        <button class="btn btn-primary">Создать</button>
+    </a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Номер документа
+        </th>
+        <th>
+            Дата создания
+        </th>
+        <th>
+            Главный бухгалтер
+        </th>
+        <th>
+            Период
+        </th>
+        <th>
+            Управляющий
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Timetable)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChiefAccountant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Period.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supervisor.Id)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Больше</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

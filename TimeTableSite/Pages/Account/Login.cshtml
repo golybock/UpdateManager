@@ -1,0 +1,27 @@
+﻿@page
+@model Login
+
+@{
+    Layout = "_AccountLayout";
+    ViewData["Title"] = "Login";
+}
+
+<div class="vh-100 d-flex align-items-center">
+        <div class="col-md-4 offset-lg-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <label style="font-size: 30px">Авторизация</label>
+                </div>
+                <div class="card-body">
+                    <label style="color: red">@Model.Error</label>
+                    <form method="post" class="col">
+                        <label style="margin: 1%" class="form-label">Email</label>
+                        <input style="margin: 1%" type="text" class="form-control" asp-for="UserLogin"/>
+                        <label style="margin: 1%" class="form-label">Password</label>
+                        <input style="margin: 1%" type="password" class="form-control" asp-for="UserPassword"/>
+                        <button style="margin: 1%" class="btn form-control btn-primary">Войти</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>

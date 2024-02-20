@@ -1,0 +1,26 @@
+@page
+@model TimeTableSite.Pages.Department.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Информация</h1>
+
+<div>
+    <h4>Подразделение</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Наименование
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Department.Id">Редактировать</a> |
+    <a asp-page="./Index">Назад</a>
+</div>

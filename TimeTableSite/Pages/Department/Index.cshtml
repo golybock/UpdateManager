@@ -1,0 +1,39 @@
+@page
+@model TimeTableSite.Pages.Department.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Подразделения</h1>
+
+<p>
+    <a asp-page="Create">
+        <button class="btn btn-primary">Создать</button>
+    </a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department[0].Name)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Department)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Больше</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
